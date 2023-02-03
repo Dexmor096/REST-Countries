@@ -3,15 +3,13 @@ import {ALL_COUNTRIES} from "../../config";
 export const ADD_COUNTRIES = '@@country/ADD_COUNTRIES';
 export const ADD_LOADING = '@@country/ADD_LOADING';
 export const ADD_ERROR = '@@country/ADD_ERROR';
-
-
 export const getCountries = (countries) => ({
     type: ADD_COUNTRIES,
     payload: countries,
 })
 
 export const getLoading = () => ({
-    type: ADD_LOADING
+    type: ADD_LOADING,
 })
 
 export const getError = (err) => ({
@@ -28,7 +26,6 @@ export const loadCountries = () => async (dispatch, _, {client, api}) => {
         dispatch(getError(err.message))
     }
 }
-
 // export const loadCountries = () => (dispatch, _, {client, api}) => {
 //     dispatch(getLoading());
 //

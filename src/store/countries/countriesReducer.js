@@ -17,6 +17,7 @@ export const countriesReducer = (state = initialState, {type, payload}) => {
             }
         case ADD_LOADING:
             return {
+                ...state,
                 status: 'loading',
                 error: null,
             }

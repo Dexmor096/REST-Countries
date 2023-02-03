@@ -6,21 +6,21 @@ import {List} from '../components/List';
 import {Card} from '../components/Card';
 import {Controls} from '../components/Controls';
 import {loadCountries} from "../store/countries/countriesAction";
-import {selectAllCountries, selectCountriesInfo} from "../store/countries/contriesSelector";
+import {selectControls} from '../store/controls/controlsSelector'
+import {selectVisibleCountries, selectCountriesInfo} from "../store/countries/contriesSelector";
 
 export const HomePage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const {search, region} = useSelector(selectControls);
+    const countries = useSelector(state => selectVisibleCountries(state, {search, region}));
     const {status, error, qty} = useSelector(selectCountriesInfo);
-    const countries = useSelector(selectAllCountries);
 
     useEffect(() => {
         if (!qty) {
         dispatch(loadCountries())
-        }
-    }, [qty])
-
-    console.log(countries)
+         }
+    }, [qty, dispatch])
 
     return (
         <>
@@ -31,7 +31,7 @@ export const HomePage = () => {
             {status === 'received' && (
 
             <List>
-                {countries.map((c) => {
+                {countries && countries.map((c) => {
                     const countryInfo = {
                         img: c.flags.png,
                         name: c.name,
@@ -60,7 +60,8 @@ export const HomePage = () => {
                     );
                 })}
             </List>
-            )}
+            )
+            }
         </>
     );
 };
