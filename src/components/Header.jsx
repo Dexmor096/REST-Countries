@@ -65,7 +65,7 @@ export const Header = () => {
                         <span
                             style={{marginLeft: '0.75rem'}}
                             onClick={toggleTheme}
-                        >{theme} Theme</span>
+                        >{theme === 'light' ? 'dark' : 'light'} Theme</span>
                     </ModeSwitcher>
                 </Wrapper>
             </Container>
